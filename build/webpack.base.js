@@ -9,9 +9,9 @@ const autoprefixer = require('autoprefixer');
 const setMPA = ()=>{
     const entry = {};
     const htmlWebpackPlugins = [];
-    const entryFiles = glob.sync(path.join(__dirname,'../src/pages/*/*.ts'))
+    const entryFiles = glob.sync(path.join(__dirname,'../src/pages/*/*.js'))
     entryFiles.map((item)=>{
-        const match = item.match(/src\/pages\/(.*)\/(.*).ts$/);
+        const match = item.match(/src\/pages\/(.*)\/(.*).js$/);
         const pageName = match && match[1];
         entry[pageName] = item;
         htmlWebpackPlugins.push(
@@ -47,13 +47,7 @@ module.exports = {
     module : {
         rules : [
             {
-                test : /\.ts$/,
-                use: [
-					'ts-loader'
-				]
-            },
-            {
-                test : /\.(ts|js|vue)$/,
+                test : /\.(js|vue)$/,
                 loader: 'eslint-loader',
                 enforce: 'pre',
                 exclude: /(node_modules|plugs)/,
